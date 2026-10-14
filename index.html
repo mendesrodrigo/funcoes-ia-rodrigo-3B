@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA Music Q&A - Busca Integrada DuckDuckGo</title>
+    <!-- Ícones Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Fundo Escuro com Objetos 3D Flutuantes -->
+    <div class="bg-effects">
+        <div class="shape-3d sphere"></div>
+        <div class="shape-3d torus"></div>
+        <div class="shape-3d cube"></div>
+    </div>
+
+    <!-- Interface Estilo Modal -->
+    <main class="modal-card">
+        <header class="modal-header">
+            <div class="logo-area">
+                <i data-lucide="disc-3" class="logo-icon"></i>
+                <h1>Music<span class="highlight">IA</span> Live</h1>
+            </div>
+            <p>Pergunte sobre música. O sistema busca no DuckDuckGo/Web e exibe o resultado diretamente nesta página.</p>
+        </header>
+
+        <!-- Formulário de Pergunta -->
+        <section class="search-box">
+            <div class="input-wrapper">
+                <i data-lucide="search" class="search-icon"></i>
+                <input type="text" id="perguntaInput" placeholder="Digite sua pergunta sobre música..." onkeypress="checarEnter(event)" />
+                <button id="btnPerguntar" onclick="buscarComDuckDuckGo()">
+                    <span id="txtBtnSearch">Buscar</span>
+                    <i data-lucide="sparkles"></i>
+                </button>
+            </div>
+            
+            <!-- Sugestões Rápidas -->
+            <div class="quick-tags">
+                <span onclick="preencherEBuscar('Quem fundou a banda Queen?')">Banda Queen</span>
+                <span onclick="preencherEBuscar('Qual a origem do Jazz?')">Origem do Jazz</span>
+                <span onclick="preencherEBuscar('Quem é Michael Jackson?')">Michael Jackson</span>
+            </div>
+        </section>
+
+        <!-- Indicador de Carregamento -->
+        <div id="loading" class="loading-area hidden">
+            <div class="spinner"></div>
+            <p>Consultando DuckDuckGo e fontes da web...</p>
+        </div>
+
+        <!-- Área de Resposta Integrada -->
+        <section id="respostaContainer" class="resposta-card hidden">
+            <div class="resposta-header">
+                <h3><i data-lucide="bot"></i> Resposta Extraída da Web</h3>
+                <button id="btnOuvir" class="btn-audio" onclick="alternarVoz()">
+                    <i data-lucide="volume-2" id="iconVoz"></i>
+                    <span id="textoBtnVoz">Ouvir Resposta</span>
+                </button>
+            </div>
+            
+            <div id="textoResposta" class="texto-resposta"></div>
+
+            <!-- Exibição de Notícias/Resultados Inline sem sair da página -->
+            <div class="noticia-inline-area" id="noticiaArea">
+                <h4><i data-lucide="newspaper"></i> Notícia / Detalhes Inline:</h4>
+                <div id="noticiaConteudo" class="noticia-conteudo"></div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
